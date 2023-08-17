@@ -43,7 +43,7 @@ public class HotelManagerServiceImpli implements HotelManagerService {
 
 	@Override
 	public String deleteHmDetails(Long id) {
-		d.findById(id).orElseThrow();
+		//d.findById(id).orElseThrow();
 		d.deleteById(id);
 		return "Successfully deleted!!";
 	}

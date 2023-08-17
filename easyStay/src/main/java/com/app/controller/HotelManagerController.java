@@ -40,7 +40,7 @@ public class HotelManagerController {
 	}
 	
 	
-	@GetMapping("/{empId}")
+	@GetMapping("/{hmId}")
 	//@pathVariable => method arg level annotation, to bind incoming uri variable
 	public Optional<HotelManager> upd1(@PathVariable Long hmId){
 		System.out.println("In get Hm Details: "+hmId);

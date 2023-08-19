@@ -2,7 +2,10 @@ package com.app.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,6 +21,12 @@ public class BookingTbl extends BaseEntity {
 	@NotNull
 	private int prize;
 
+	@OneToOne
+	@JoinColumn(name = "room_id")	
+	private Room rm;
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User us;
 	public BookingTbl() {
 		super();
 	}
@@ -29,7 +38,7 @@ public class BookingTbl extends BaseEntity {
 		this.bookinDate = bookinDate;
 		this.prize = prize;
 	}
-
+	
 	public LocalDate getCheckIn() {
 		return checkIn;
 	}

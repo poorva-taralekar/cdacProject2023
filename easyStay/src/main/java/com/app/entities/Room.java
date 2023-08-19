@@ -1,11 +1,13 @@
 package com.app.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -36,7 +38,9 @@ public class Room extends BaseEntity {
 	public Room() {
 		super();
 	}
-
+    
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "rm")
+	private BookingTbl  booking;
 	public Room(int status, RoomType type, Hotel myHotel) {
 		super();
 		this.status = status;

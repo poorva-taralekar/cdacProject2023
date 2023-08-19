@@ -29,7 +29,10 @@ public class User extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "hotel_id")
 	private Hotel myHotel;
-
+    
+	@OneToOne(cascade = CascadeType.ALL , mappedBy = "us")
+	private BookingTbl bk;
+	
 	public User() {
 		super();
 	}

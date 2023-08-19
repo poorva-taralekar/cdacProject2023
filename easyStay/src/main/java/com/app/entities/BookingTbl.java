@@ -1,7 +1,7 @@
 package com.app.entities;
 
 import java.time.LocalDate;
-
+import java.time.temporal.ChronoUnit;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -20,7 +20,6 @@ public class BookingTbl extends BaseEntity {
 	private LocalDate bookinDate;
 	@NotNull
 	private int prize;
-
 	@OneToOne
 	@JoinColumn(name = "room_id")	
 	private Room rm;
@@ -30,7 +29,27 @@ public class BookingTbl extends BaseEntity {
 	public BookingTbl() {
 		super();
 	}
-
+	
+	public Long bookingPrice(LocalDate checkIn,LocalDate checkOut,RoomType type)
+	{
+		Long days = ChronoUnit.DAYS.between(checkIn, checkOut);
+		if(type.toString() == "AC")
+		{
+			return days*3000;
+		}
+		else if(type.toString() == "NONAC")
+		{
+			return days*1000;
+		}
+		else if(type.toString() == "DELUXE")
+		{
+			return days*5000;
+		}
+		else
+		{
+			return days*0;
+		}
+	}
 	public BookingTbl(LocalDate checkIn, LocalDate checkOut, LocalDate bookinDate, @NotNull int prize) {
 		super();
 		this.checkIn = checkIn;
